@@ -2,10 +2,13 @@ package com.nascenia.android.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.nascenia.android.adapters.ToDoAdapter;
+import com.nascenia.android.data.ToDo;
 
 import java.util.ArrayList;
 
@@ -22,32 +25,26 @@ public class StarterActivity extends AppCompatActivity {
                 "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2",
                 "Android", "iPhone", "WindowsMobile" };
 
-        final ArrayList<String> list = new ArrayList<String>();
+        final ArrayList<ToDo> list = new ArrayList<ToDo>();
         for (int i = 0; i < values.length; ++i) {
-            list.add(values[i]);
+            ToDo toDo = new ToDo(values[i]);
+            list.add(toDo);
         }
-        final ToDoAdapter adapter = new ToDoAdapter(this,
-                android.R.layout.simple_list_item_1, list);
+        final ToDoAdapter adapter = new ToDoAdapter(getApplicationContext(),
+                R.layout.todo_row, list);
         listview.setAdapter(adapter);
 
-//        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, final View view,
-//                                    int position, long id) {
-//                final String item = (String) parent.getItemAtPosition(position);
-//                view.animate().setDuration(2000).alpha(0)
-//                        .withEndAction(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                list.remove(item);
-//                                adapter.notifyDataSetChanged();
-//                                view.setAlpha(1);
-//                            }
-//                        });
-//            }
-//
-//        });
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, final View view,
+                                    int position, long id) {
+                final ToDo toDo = (ToDo) parent.getItemAtPosition(position);
+                Toast.makeText(getApplicationContext(), "You select item " + toDo.getTitle(),
+                        Toast.LENGTH_LONG).show();
+            }
+
+        });
 
     }
 }
