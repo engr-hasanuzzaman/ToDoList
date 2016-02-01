@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/app_horizontal_padding"
+    android:paddingLeft="@dimen/app_vertical_padding"
+    android:paddingRight="@dimen/app_horizontal_padding"
+    android:paddingTop="@dimen/app_vertical_padding"
+    android:orientation="vertical"
+    tools:context="com.nascenia.android.activities.StarterActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_todo"
+        android:textSize="@dimen/app_header_text_size"
+        android:inputType="none"
+        android:textStyle="bold" />
+
+    <ListView
+        android:id="@+id/todo_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></ListView>
+</LinearLayout>
